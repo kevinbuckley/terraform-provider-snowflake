@@ -16,7 +16,7 @@ func TestAccResourceMonitor(t *testing.T) {
 		Providers: providers(),
 		Steps: []resource.TestStep{
 			{
-				Config: resourceMonitorConfig(name),
+				Config: resourceMonitorConfig(name, 1),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("snowflake_resource_monitor.test", "name", name),
 				),
@@ -31,10 +31,11 @@ func TestAccResourceMonitor(t *testing.T) {
 	})
 }
 
-func resourceMonitorConfig(accName string) string {
+func resourceMonitorConfig(accName string, creditQuota int) string {
 	return fmt.Sprintf(`
 resource "snowflake_resource_monitor" "test" {
-	name           = "%v"
+	name           = "%s"
+	credit_quota   = %d
 }
-`, accName)
+`, accName, creditQuota)
 }

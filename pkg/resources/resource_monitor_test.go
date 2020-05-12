@@ -24,7 +24,7 @@ func TestResourceMonitorCreate(t *testing.T) {
 
 	in := map[string]interface{}{
 		"name":                       "good_name",
-		"credit_quota":               100.00,
+		"credit_quota":               100,
 		"notify_triggers":            []interface{}{75, 88},
 		"suspend_triggers":           []interface{}{99},
 		"suspend_immediate_triggers": []interface{}{105},
@@ -35,7 +35,7 @@ func TestResourceMonitorCreate(t *testing.T) {
 
 	WithMockDb(t, func(db *sql.DB, mock sqlmock.Sqlmock) {
 		mock.ExpectExec(
-			`^CREATE RESOURCE MONITOR "good_name" CREDIT_QUOTA=100.00 TRIGGERS ON 99 PERCENT DO SUSPEND ON 105 PERCENT DO SUSPEND_IMMEDIATE ON 88 PERCENT DO NOTIFY ON 75 PERCENT DO NOTIFY$`,
+			`^CREATE RESOURCE MONITOR "good_name" CREDIT_QUOTA=100 TRIGGERS ON 99 PERCENT DO SUSPEND ON 105 PERCENT DO SUSPEND_IMMEDIATE ON 88 PERCENT DO NOTIFY ON 75 PERCENT DO NOTIFY$`,
 		).WillReturnResult(sqlmock.NewResult(1, 1))
 
 		expectReadResourceMonitor(mock)

@@ -22,7 +22,7 @@ var resourceMonitorSchema = map[string]*schema.Schema{
 		ForceNew:    true,
 	},
 	"credit_quota": &schema.Schema{
-		Type:        schema.TypeFloat,
+		Type:        schema.TypeInt,
 		Optional:    true,
 		Computed:    true,
 		Description: "The amount of credits allocated monthly to the resource monitor, round up to 2 decimal places.",
@@ -96,7 +96,7 @@ func CreateResourceMonitor(data *schema.ResourceData, meta interface{}) error {
 	cb := snowflake.ResourceMonitor(name).Create()
 	// Set optionals
 	if v, ok := data.GetOk("credit_quota"); ok {
-		cb.SetFloat("credit_quota", v.(float64))
+		cb.SetInt("credit_quota", v.(int))
 	}
 	if v, ok := data.GetOk("frequency"); ok {
 		cb.SetString("frequency", v.(string))
