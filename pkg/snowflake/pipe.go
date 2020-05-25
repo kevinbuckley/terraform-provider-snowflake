@@ -91,7 +91,7 @@ func (pb *PipeBuilder) Create() string {
 		q.WriteString(` AUTO_INGEST = TRUE`)
 	}
 	if pb.integration != "" {
-		q.WriteString(fmt.Sprintf(`INTEGRATION = '%v'`, EscapeString(pb.integration)))
+		q.WriteString(fmt.Sprintf(` INTEGRATION = '%v'`, EscapeString(pb.integration)))
 	}
 
 	if pb.comment != "" {
