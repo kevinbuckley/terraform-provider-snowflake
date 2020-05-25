@@ -59,6 +59,11 @@ var pipeSchema = map[string]*schema.Schema{
 		ForceNew:    true,
 		Description: "Specifies a auto_ingest param for the pipe.",
 	},
+	"integration": &schema.Schema{
+		Type:        schema.TypeString,
+		Optional:    true,
+		Description: "Specifies an integration for the pipe.",
+	},
 	"notification_channel": &schema.Schema{
 		Type:        schema.TypeString,
 		Computed:    true,
@@ -152,6 +157,10 @@ func CreatePipe(data *schema.ResourceData, meta interface{}) error {
 
 	if v, ok := data.GetOk("auto_ingest"); ok && v.(bool) {
 		builder.WithAutoIngest()
+	}
+
+	if v, ok := data.GetOk("integration"); ok {
+		builder.WithIntegration(v.(string))
 	}
 
 	q := builder.Create()
