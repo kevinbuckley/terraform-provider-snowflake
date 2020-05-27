@@ -2,7 +2,7 @@ SHA=$(shell git rev-parse --short HEAD)
 VERSION=$(shell cat VERSION)
 export DIRTY=$(shell if `git diff-index --quiet HEAD --`; then echo false; else echo true;  fi)
 # TODO add release flag
-LDFLAGS=-ldflags "-w -s -X github.com/chanzuckerberg/terraform-provider-snowflake/pkg/version.GitSha=${SHA} -X github.com/chanzuckerberg/terraform-provider-snowflake/pkg/version.Version=${VERSION} -X github.com/chanzuckerberg/terraform-provider-snowflake/pkg/version.Dirty=${DIRTY}"
+LDFLAGS=-ldflags "-w -s -X github.com/kevinbuckley/terraform-provider-snowflake/pkg/version.GitSha=${SHA} -X github.com/kevinbuckley/terraform-provider-snowflake/pkg/version.Version=${VERSION} -X github.com/kevinbuckley/terraform-provider-snowflake/pkg/version.Dirty=${DIRTY}"
 export BASE_BINARY_NAME=terraform-provider-snowflake_v$(VERSION)
 export GO111MODULE=on
 
@@ -10,7 +10,7 @@ all: test docs install
 .PHONY: all
 
 setup: ## setup development dependencies
-	curl -sfL https://raw.githubusercontent.com/chanzuckerberg/bff/master/download.sh | sh
+	curl -sfL https://raw.githubusercontent.com/kevinbuckley/bff/master/download.sh | sh
 	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh
 	curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh
 	bash .download-tfproviderlint.sh
