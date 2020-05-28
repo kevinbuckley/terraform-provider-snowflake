@@ -23,7 +23,7 @@ func TestPipeCreate(t *testing.T) {
 	r.Equal(s.Create(), `CREATE PIPE "test_db"."test_schema"."test_pipe" AUTO_INGEST = TRUE COMMENT = 'Yeehaw' AS test copy statement `)
 
 	s.WithIntegration("myintegration")
-	r.Equal(s.Create(), `CREATE PIPE "test_db"."test_schema"."test_pipe" AUTO_INGEST = TRUE Integration='myintegration' COMMENT = 'Yeehaw' AS test copy statement `)
+	r.Equal(s.Create(), `CREATE PIPE "test_db"."test_schema"."test_pipe" AUTO_INGEST = TRUE INTEGRATION = 'myintegration' COMMENT = 'Yeehaw' AS test copy statement `)
 
 }
 
