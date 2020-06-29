@@ -77,6 +77,7 @@ func Provider() *schema.Provider {
 			"snowflake_stage_grant":              resources.StageGrant(),
 			"snowflake_notification_integration": resources.NotificationIntegration(),
 			"snowflake_storage_integration":      resources.StorageIntegration(),
+			"snowflake_table":                    resources.Table(),
 			"snowflake_user":                     resources.User(),
 			"snowflake_view":                     resources.View(),
 			"snowflake_view_grant":               resources.ViewGrant(),

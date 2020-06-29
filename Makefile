@@ -48,8 +48,11 @@ release-snapshot: ## run a release
 .PHONY: release-snapshot
 
 build: ## build the binary
-	go build ${LDFLAGS} -o $(BASE_BINARY_NAME) .
+	env GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -o $(BASE_BINARY_NAME) .
 .PHONY: build
+
+build-linux: ## build the binary for linux
+   env GOOS=linux GOARCH=amd64 go build ${LDFLAGS} -o $(BASE_BINARY_NAME) .
 
 coverage: ## run the go coverage tool, reading file coverage.out
 	go tool cover -html=coverage.txt
